@@ -1,4 +1,4 @@
-package org.upgrad.controllers;
+package org.upgrad.controller;
 
 
 import org.springframework.web.bind.annotation.*;

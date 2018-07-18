@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket productsApi(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.upgrad.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("org.upgrad.controller"))
                 .paths(PathSelectors.regex("/api.*"))
                 .build();
     }
