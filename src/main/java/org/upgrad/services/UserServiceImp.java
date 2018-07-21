@@ -2,7 +2,6 @@ package org.upgrad.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.upgrad.models.Question;
 import org.upgrad.models.User;
 import org.upgrad.models.User_Profile;
 import org.upgrad.repositories.UserProfileRepository;

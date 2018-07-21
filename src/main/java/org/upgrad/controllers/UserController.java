@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.upgrad.models.User;
 import org.upgrad.models.User_Profile;
-import org.upgrad.services.NotificationService;
 import org.upgrad.services.UserProfileService;
 import org.upgrad.services.UserService;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @RestController
@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     private UserProfileService userProfileService;
 
-    @Autowired
-    private NotificationService notificationService;
 
     @PostMapping("/api/user/signup")
     public ResponseEntity registerUser(@RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam(value = "lastName",required = false) String lastName, @RequestParam(value = "aboutMe",required = false) String aboutMe, @RequestParam(value = "contactNumber",required = false) String contactNumber, @RequestParam("dob") String dob, @RequestParam("country") String country) throws Exception {
@@ -38,6 +36,9 @@ public class UserController {
         user_profile.setFirstName(firstName);
         user_profile.setCountry(country);
         user_profile.setContactNumber(contactNumber);
+        try {
+
+        } catch (ParseException e) {e.printStackTrace();}
         user_profile.setDob(new SimpleDateFormat("yyyy-MM-dd").parse(dob));
         user_profile.setAboutMe(aboutMe);
 
@@ -65,7 +66,9 @@ public class UserController {
      * @return Response entity to determine login
      */
     @PostMapping("/api/user/login")
-    public ResponseEntity sigin(@RequestParam String userName, @RequestParam String password, HttpSession session) throws Exception
+    public ResponseEntity sigin
+    (@RequestParam String userName,
+     @RequestParam String password, HttpSession session) throws Exception
     {
         String message = null;
         String passwordHash = hashPassword(password);
@@ -121,29 +124,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/api/user/notification/new")
-    public ResponseEntity<?> getnewNotification(HttpSession session){
-        if (session.getAttribute("currUser") == null)
-            return new ResponseEntity<>("Please Login first to access this endpoint!", HttpStatus.UNAUTHORIZED);
-        else {
-            User currUser = (User)session.getAttribute("currUser");
-            String currUserName = currUser.getUserName();
-            int id = userService.findUserId(currUserName);
-            return new ResponseEntity<>(notificationService.getNewNotifications(id),HttpStatus.OK);
-        }
-    }
-
-    @GetMapping("/api/user/notification/all")
-    public ResponseEntity<?> getallNotification(HttpSession session){
-        if (session.getAttribute("currUser") == null)
-            return new ResponseEntity<>("Please Login first to access this endpoint!", HttpStatus.UNAUTHORIZED);
-        else {
-            User currUser = (User)session.getAttribute("currUser");
-            String currUserName = currUser.getUserName();
-            int id = userService.findUserId(currUserName);
-            return new ResponseEntity<>(notificationService.getAllNotifications(id),HttpStatus.OK);
-        }
-    }
 
     /**
      * SHA-256 encryption
