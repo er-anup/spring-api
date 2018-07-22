@@ -85,4 +85,4 @@ public class Answer {
     public void setUser(User user) {
         this.user = user;
     }
- }
+}
