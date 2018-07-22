@@ -111,7 +111,7 @@ public class CommentControllerTest {
         Comment comment = new Comment();
         comment.setUser(user);
         comment.setId(1);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(2);
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(2);
         String url = "/api/comment/1";
         mvc.perform(put(url).session(session)
                 .param("comment",com)
@@ -129,7 +129,7 @@ public class CommentControllerTest {
         String comment = "good";
         session = new MockHttpSession();
         session.setAttribute("currUser", user);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(2);
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(2);
         String url = "/api/comment/1";
         mvc.perform(put(url).session(session)
                 .param("comment",comment)
@@ -151,7 +151,7 @@ public class CommentControllerTest {
         comment.setId(1);
         session = new MockHttpSession();
         session.setAttribute("currUser", user);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(user.getId());
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(user.getId());
         String url = "/api/comment/1";
         mvc.perform(put(url).session(session)
                 .param("comment",com)
@@ -182,7 +182,7 @@ public class CommentControllerTest {
         session = new MockHttpSession();
         session.setAttribute("currUser", user);
         user.setId(3);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(2);
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(2);
         String url = "/api/comment/1";
         mvc.perform(delete(url).session(session)
                 .param("commentId",commentId))
@@ -199,7 +199,7 @@ public class CommentControllerTest {
         session = new MockHttpSession();
         session.setAttribute("currUser", user);
         user.setId(3);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(2);
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(2);
         String url = "/api/comment/1";
         mvc.perform(delete(url).session(session)
                 .param("commentId",commentId))
@@ -219,7 +219,7 @@ public class CommentControllerTest {
         comment.setId(1);
         session = new MockHttpSession();
         session.setAttribute("currUser", user);
-        Mockito.when(commentService.findUserIdfromComment(1)).thenReturn(user.getId());
+        Mockito.when(commentService.findUserIdFromComment(1)).thenReturn(user.getId());
         String url = "/api/comment/1";
         mvc.perform(delete(url).session(session)
                 .param("commentId",commentId))

@@ -160,7 +160,7 @@ public class QuestionControllerTest {
         session.setAttribute("currUser", user);
         String questionId = "3";
         user.setId(4);
-        Mockito.when(questionService.findUserIdfromQuestion(3)).thenReturn(3);
+        Mockito.when(questionService.findUserIdFromQuestion(3)).thenReturn(3);
         String url = "/api/question/3";
         mvc.perform(delete(url).session(session)
                 .param("questionId", questionId))
@@ -177,7 +177,7 @@ public class QuestionControllerTest {
         session.setAttribute("currUser", user);
         String questionId = "3";
         user.setId(4);
-        Mockito.when(questionService.findUserIdfromQuestion(3)).thenReturn(3);
+        Mockito.when(questionService.findUserIdFromQuestion(3)).thenReturn(3);
         String url = "/api/question/3";
         mvc.perform(delete(url).session(session)
                 .param("questionId", questionId))
@@ -197,7 +197,7 @@ public class QuestionControllerTest {
         question.setUser(user);
         question.setId(3);
         String questionId = "3";
-        Mockito.when(questionService.findUserIdfromQuestion(question.getId())).thenReturn(user.getId());
+        Mockito.when(questionService.findUserIdFromQuestion(question.getId())).thenReturn(user.getId());
         String url = "/api/question/3";
         mvc.perform(delete(url).session(session)
                 .param("questionId", questionId))

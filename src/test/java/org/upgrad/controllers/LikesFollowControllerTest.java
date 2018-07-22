@@ -130,7 +130,7 @@ public class LikesFollowControllerTest {
         Answer answer = new Answer();
         answer.setUser(user);
         answer.setId(1);
-        Mockito.when(answerService.findUserIdfromAnswer(1)).thenReturn(1);
+        Mockito.when(answerService.findUserIdFromAnswer(1)).thenReturn(1);
         String url = "/api/unlike/1";
         mvc.perform(delete(url).session(session)
                 .param("answerId",answerId))

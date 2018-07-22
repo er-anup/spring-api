@@ -92,7 +92,7 @@ public class AnswerControllerTest {
         session.setAttribute("currUser", user);
         String answer = "This is the answer for REST architecture";
         user.setId(4);
-        Mockito.when(answerService.findUserIdfromAnswer(3)).thenReturn(3);
+        Mockito.when(answerService.findUserIdFromAnswer(3)).thenReturn(3);
         String url = "/api/answer/3";
         mvc.perform(put(url).session(session)
                 .param("answer",answer))
@@ -109,7 +109,7 @@ public class AnswerControllerTest {
         session.setAttribute("currUser", user);
         String answer ="This is the edited answer";
         user.setId(4);
-        Mockito.when(answerService.findUserIdfromAnswer(3)).thenReturn(4);
+        Mockito.when(answerService.findUserIdFromAnswer(3)).thenReturn(4);
         String url = "/api/answer/3";
         mvc.perform(put(url).session(session)
                 .param("answer",answer))
@@ -220,7 +220,7 @@ public class AnswerControllerTest {
         Answer answer = new Answer();
         answer.setUser(user);
         answer.setId(3);
-        Mockito.when(answerService.findUserIdfromAnswer(3)).thenReturn(3);
+        Mockito.when(answerService.findUserIdFromAnswer(3)).thenReturn(3);
         String url = "/api/answer/3";
         mvc.perform(delete(url).session(session))
                 .andExpect(status().is4xxClientError())
@@ -237,7 +237,7 @@ public class AnswerControllerTest {
         Answer answer = new Answer();
         answer.setUser(user);
         answer.setId(3);
-        Mockito.when(answerService.findUserIdfromAnswer(3)).thenReturn(3);
+        Mockito.when(answerService.findUserIdFromAnswer(3)).thenReturn(3);
         String url = "/api/answer/3";
         mvc.perform(delete(url).session(session))
                 .andExpect(status().is2xxSuccessful())

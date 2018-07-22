@@ -40,7 +40,7 @@ public class LikesFollowController {
             } else {
                 likeService.giveLikes(answerId, user.getId());
                 //Adding a notification to the 'user' who created the 'answer'
-                notificationService.addnotification(answerService.findUserIdfromAnswer(answerId), "User"
+                notificationService.addNotification(answerService.findUserIdFromAnswer(answerId), "User"
                         + user.getId() + " already liked this answer " + answerId);
                 return new ResponseEntity<>(" answerId " + answerId + " liked successfully.", HttpStatus.OK);
             }
