@@ -1,11 +1,11 @@
-package org.upgrad.repository;
+package org.upgrad.repositories;
 
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
-import org.upgrad.model.Notification;
+import org.upgrad.models.Notification;
 import java.util.List;
 
 
@@ -32,4 +32,8 @@ public interface NotificationRepository extends CrudRepository<Notification,Inte
     @Query(nativeQuery = true,value="INSERT INTO NOTIFICATION (id,user_id,message,date,read) values (DEFAULT,?1,?2,NOW(),'f')")
     void addNotification(int userId, String message);
 
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,value="delete from notification where user_id =?1")
+    void deleteNotification(int userId);
 }

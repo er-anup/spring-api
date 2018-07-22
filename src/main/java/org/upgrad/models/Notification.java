@@ -1,14 +1,10 @@
-package org.upgrad.model;
+package org.upgrad.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.upgrad.repository.UserRepository;
+import org.upgrad.models.User;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.time.LocalDateTime;
-import java.util.Date;
-import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity

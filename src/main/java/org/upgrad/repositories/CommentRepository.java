@@ -17,7 +17,7 @@ public interface CommentRepository extends CrudRepository<Comment,Integer> {
     @Transactional
     @Modifying
     @Query(nativeQuery = true,value="INSERT INTO COMMENT(content,date,user_id,answer_id,modifiedon) VALUES (?1,NOW(),?2,?3,NOW())")
-    void addComment(String comment, int user_id, int answer_id);
+    void addComment(String comment, int userId, int answerId);
 
     @Query(nativeQuery = true,value="select user_id from comment where id = ?1")
     int getUserId(int id);

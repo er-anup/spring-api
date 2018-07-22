@@ -1,4 +1,4 @@
-package org.upgrad.controller;
+package org.upgrad.controllers;
 
 
 import com.google.common.hash.Hashing;
@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.upgrad.form.LoginUser;
 import org.upgrad.form.RegisterNewUser;
-import org.upgrad.model.User;
-import org.upgrad.model.UserProfile;
+import org.upgrad.models.User;
+import org.upgrad.models.UserProfile;
 import org.upgrad.services.NotificationService;
 import org.upgrad.services.UserProfileService;
 import org.upgrad.services.UserService;
@@ -34,7 +34,6 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity signup(RegisterNewUser registerNewUser){
-        System.out.print(registerNewUser.getDateOfBirth());
         User user = new User();
         user.setPassword(hashPassword(registerNewUser.getPassword()));
         user.setEmail(registerNewUser.getEmail());

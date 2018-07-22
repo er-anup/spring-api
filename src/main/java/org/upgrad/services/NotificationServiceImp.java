@@ -2,8 +2,8 @@ package org.upgrad.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.upgrad.model.Notification;
-import org.upgrad.repository.NotificationRepository;
+import org.upgrad.models.Notification;
+import org.upgrad.repositories.NotificationRepository;
 import java.util.List;
 
 @Service
@@ -30,4 +30,8 @@ public class NotificationServiceImp implements NotificationService {
         notificationRepository.addNotification(userId, message) ;
     }
 
+    @Override
+    public void deleteNotification(int user_id) {
+        notificationRepository.deleteNotification(user_id);
+    }
 }

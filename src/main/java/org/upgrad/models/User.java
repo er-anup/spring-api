@@ -1,4 +1,4 @@
-package org.upgrad.model;
+package org.upgrad.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

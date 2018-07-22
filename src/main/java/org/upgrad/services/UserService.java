@@ -1,8 +1,7 @@
 package org.upgrad.services;
 
-import org.upgrad.model.User;
-import org.upgrad.model.UserProfile;
-
+import org.upgrad.models.User;
+import org.upgrad.models.UserProfile;
 import java.util.List;
 
 public interface UserService {

@@ -2,23 +2,20 @@ package org.upgrad.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.upgrad.model.User;
-import org.upgrad.model.UserProfile;
-import org.upgrad.repository.UserProfileRepository;
-import org.upgrad.repository.UserRepository;
-
+import org.upgrad.models.User;
+import org.upgrad.models.UserProfile;
+import org.upgrad.repositories.UserProfileRepository;
+import org.upgrad.repositories.UserRepository;
 import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
-
 
     @Autowired
     UserRepository userRepository;
 
     @Autowired
     UserProfileRepository userProfileRepository;
-
 
     @Override
     public String findUserByUsername(String userName)
@@ -34,11 +31,12 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Boolean registerUserDetails(User user , UserProfile userProfile ) {
+
         Boolean success = false ;
 
         userRepository.addUserCredentials(user.getUserName(), user.getPassword(), user.getEmail(), "user") ;
-        int user_id =  Integer.valueOf(userRepository.findUserId(user.getUserName())) ;
-        userProfileRepository.addUserProfileCredentials(user_id,  userProfile.getFirstName(), userProfile.getLastName(), userProfile.getAboutMe(), userProfile.getDob() , userProfile.getContactNumber() , userProfile.getCountry() );
+        int userId =  Integer.valueOf(userRepository.findUserId(user.getUserName())) ;
+        userProfileRepository.addUserProfileCredentials(userId,  userProfile.getFirstName(), userProfile.getLastName(), userProfile.getAboutMe(), userProfile.getDob() , userProfile.getContactNumber() , userProfile.getCountry() );
         success = true ;
         return  success ;
     }
@@ -67,11 +65,8 @@ public class UserServiceImp implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAllUsers();
     }
-
-
     @Override
     public User getUserByUsername(String userName) {
         return userRepository.getUserByUsername(userName);
     }
-
 }

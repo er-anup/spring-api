@@ -1,4 +1,4 @@
-package org.upgrad.model;
+package org.upgrad.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

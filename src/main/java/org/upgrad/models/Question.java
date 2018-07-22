@@ -19,6 +19,23 @@ public class Question {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "content")
+    private String content ;
+
+    @Column(name = "date")
+    private LocalDateTime date ;
+
+    @Column(name = "user_id")
+    private int userId ;
+
+
+    @Transient
+    private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Category> category;
+
     public int getId() {
         return id;
     }
@@ -43,31 +60,13 @@ public class Question {
         this.date = date;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
-    @Column(name = "content")
-
-    private String content ;
-
-    @Column(name = "date")
-    private LocalDateTime date ;
-
-    @Column(name = "user_id")
-    private int user_id ;
-
-
-    @Transient
-    private User user;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Set<Category> category;
 
     public User getUser() {
         return user;

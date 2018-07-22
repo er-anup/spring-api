@@ -7,17 +7,18 @@ import org.upgrad.repositories.CommentRepository;
 
 @Service
 public class CommentServiceImp implements CommentService {
+
     @Autowired
     private CommentRepository commentRepository;
 
 
     @Override
-    public void addComment(String comment, int user_id, int answer_id) {
-        commentRepository.addComment(comment,user_id,answer_id);
+    public void addComment(String comment, int userId, int answer_id) {
+        commentRepository.addComment(comment,userId,answer_id);
     }
 
     @Override
-    public int findUserIdfromComment(int commentId) {
+    public int findUserIdFromComment(int commentId) {
         return commentRepository.getUserId(commentId);
     }
 

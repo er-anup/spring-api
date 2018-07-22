@@ -1,5 +1,6 @@
 package org.upgrad.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -12,11 +13,24 @@ import java.util.Date;
 */
 @Entity
 public class Comment {
+
     @Id
     private int id;
+
     private String content;
+
     private LocalDateTime date;
-    private int user_id;
+
+    @Column(name = "user_id")
+    private int userId;
+
+    @Column(name="answer_id")
+    private int answerId;
+
+    private Date modifiedOn;
+
+    @Transient
+    private User user;
 
     public User getUser() {
         return user;
@@ -25,11 +39,6 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
-
-    private int answer_id;
-    private LocalDateTime modifiedon;
-    @Transient
-    private User user;
 
     public int getId() {
         return id;
@@ -55,27 +64,27 @@ public class Comment {
         this.date = date;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getAnswer_id() {
-        return answer_id;
+    public int getAnswerId() {
+        return answerId;
     }
 
-    public void setAnswer_id(int answer_id) {
-        this.answer_id = answer_id;
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
     }
 
-    public LocalDateTime getModifiedon() {
-        return modifiedon;
+    public Date getModifiedOn() {
+        return modifiedOn;
     }
 
-    public void setModifiedon(LocalDateTime modifiedon) {
-        this.modifiedon = modifiedon;
+    public void setModifiedOn(Date modifiedOn) {
+        this.modifiedOn = modifiedOn;
     }
 }

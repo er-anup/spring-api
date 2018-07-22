@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.upgrad.models.User;
 import org.upgrad.services.CategoryService;
 import org.upgrad.services.UserProfileService;
 import org.upgrad.services.UserService;
