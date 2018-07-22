@@ -6,11 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-/*
-    Author - Mananpreet Singh
-    Date - 7 July, 2018
-    Description - Persistence Class for Question table
- */
 @Entity
 @Table(name = "question")
 public class Question {
@@ -25,11 +20,8 @@ public class Question {
     @Column(name = "date")
     private LocalDateTime date ;
 
-    @Column(name = "user_id")
-    private int userId ;
-
-
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -60,16 +52,8 @@ public class Question {
         this.date = date;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return user.getUserName();
     }
 
     public void setUser(User user) {

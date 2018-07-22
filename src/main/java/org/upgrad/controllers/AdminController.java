@@ -39,7 +39,7 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/api/admin/users/all")
+    @GetMapping("/users/all")
     public ResponseEntity<?> getAllUsers(HttpSession session) {
         User user = (User) session.getAttribute("currUser");
         if (user == null) {

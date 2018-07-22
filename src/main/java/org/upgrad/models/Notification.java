@@ -1,20 +1,21 @@
 package org.upgrad.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.upgrad.models.User;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Notification {
 
     @Id
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "user_id")
-    private int userId;
+
     private String message;
     private LocalDateTime date;
     private Boolean read;
@@ -28,19 +29,17 @@ public class Notification {
         return id;
 
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setUser(User user) {this.user = user;}
 
-    public int getUserId() {
-        return userId;
+    public String getUser() {
+        return user.getUserName();
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMessage() {
@@ -63,7 +62,7 @@ public class Notification {
     public String toString() {
         return "Notification{" +
                 "id=" + id +
-                ", user_id='" + userId + '\'' +
+                ", user_id='" + user + '\'' +
                 ", message='" + message + '\'' +
                 ", read='" + read + '\'' +
                 '}';

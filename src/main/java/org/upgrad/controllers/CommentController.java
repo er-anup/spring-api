@@ -48,7 +48,7 @@ public class CommentController {
                 commentService.editCommentById(comment, commentId);
                 return new ResponseEntity<>(" Comment with commentId " + commentId + " edited successfully.", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("You do not have rights to edit this comment!", HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>("You do not have rights to edit this comment.", HttpStatus.UNAUTHORIZED);
             }
         }
     }
