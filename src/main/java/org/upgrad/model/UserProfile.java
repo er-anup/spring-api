@@ -1,45 +1,100 @@
 package org.upgrad.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "user_profile")
-public class UserProfile implements Serializable {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+
+@Entity(name = "user_profile")
+public class UserProfile {
 
     @Id
-    @Column(name="id")
-    private int id;
+    @Column(name = "id")
+    private int id ;
 
-    @Column
-    private int user_id;
+    @Column(name = "user_id")
+    private int userId ;
 
-    @Column
-    private String firstName;
+    @Column(name = "firstname")
+    private String firstName ;
 
-    @Column
-    private String lastName;
+    @Column(name = "lastname")
+    private String lastName  ;
 
-    @Column
-    private String aboutMe;
+    @Column(name = "aboutme")
+    private String aboutMe ;
 
-    @Column
-    private String contactNNumber;
+    @Column(name = "dob")
+    private Date dob ;
 
-    @Column
-    private String country;
+    @Column(name = "contactnumber")
+    private String contactNumber ;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JsonManagedReference
-    private User user;
+    @Column(name = "country")
+    private String country ;
 
-
-    public UserProfile() {
+    public int getId() {
+        return id;
     }
 
-    public UserProfile(String firstName) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() { return userId;}
+
+    public void setUserId(int user_id) {
+        this.userId = user_id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
 }
