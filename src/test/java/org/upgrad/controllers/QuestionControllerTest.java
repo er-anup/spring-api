@@ -47,7 +47,7 @@ public class QuestionControllerTest {
         session.setAttribute("currUser", null);
         String question = "what is the question";
         String categories = "1,2";
-        String url = "/api/question";
+        String url = "/api/question/";
         mvc.perform(post(url).session(session)
                 .param("categoryId",categories)
                 .param("question",question))
@@ -64,7 +64,7 @@ public class QuestionControllerTest {
         session.setAttribute("currUser",user);
         String question = "What is REST architecture?";
         String categories = "1,2";
-        String url = "/api/question";
+        String url = "/api/question/";
         mvc.perform(post(url).session(session)
                 .param("categoryId",categories)
                 .param("question",question))

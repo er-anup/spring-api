@@ -135,8 +135,8 @@ public class UserControllerTest {
 
     @Test
     public void loginAsAdmin() throws Exception{
-        String userName = "upgrad";
-        String password = "12345";
+        String userName = "admin";
+        String password = "upgrad123";
         String passwordHash = Hashing.sha256()
                 .hashString(password, Charsets.US_ASCII)
                 .toString();

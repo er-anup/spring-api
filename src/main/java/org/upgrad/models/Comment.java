@@ -27,6 +27,7 @@ public class Comment {
     @Column(name="answer_id")
     private int answerId;
 
+    @Column(name="modifiedOn")
     private Date modifiedOn;
 
     @Transient

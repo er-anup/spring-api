@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.upgrad.form.LoginUser;
-import org.upgrad.form.RegisterNewUser;
 import org.upgrad.models.User;
 import org.upgrad.models.UserProfile;
 import org.upgrad.services.NotificationService;
@@ -33,26 +31,35 @@ public class UserController {
     private NotificationService notificationService;
 
     @PostMapping("/signup")
-    public ResponseEntity signup(RegisterNewUser registerNewUser){
+    public ResponseEntity signup(@RequestParam(name="firstName") String firstName,
+                                 @RequestParam(name="lastName", required = false) String lastName,
+                                 @RequestParam(name="userName") String userName,
+                                 @RequestParam(name="email") String email,
+                                 @RequestParam(name="password") String password,
+                                 @RequestParam(name="country") String country,
+                                 @RequestParam(name="aboutMe", required = false) String aboutMe,
+                                 @RequestParam(name="dob") String dateOfBirth,
+                                 @RequestParam(name="contactNumber", required = false) String contact){
+
         User user = new User();
-        user.setPassword(hashPassword(registerNewUser.getPassword()));
-        user.setEmail(registerNewUser.getEmail());
-        user.setUserName(registerNewUser.getUsername());
+        user.setPassword(hashPassword(password));
+        user.setEmail(email);
+        user.setUserName(userName);
         UserProfile userProfile = new UserProfile();
-        userProfile.setLastName(registerNewUser.getLastName());
-        userProfile.setFirstName(registerNewUser.getFirstName());
-        userProfile.setCountry(registerNewUser.getCountry());
-        userProfile.setContactNumber(registerNewUser.getPhoneNumber());
+        userProfile.setLastName(lastName);
+        userProfile.setFirstName(firstName);
+        userProfile.setCountry(country);
+        userProfile.setContactNumber(contact);
         try {
 
-            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(registerNewUser.getDateOfBirth());
+            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(dateOfBirth);
             userProfile.setDob(dob);
 
         } catch (ParseException e) {e.printStackTrace();}
-        userProfile.setAboutMe(registerNewUser.getAboutMe());
+        userProfile.setAboutMe(aboutMe);
 
-        String userPresent = String.valueOf(userService.findUserByUsername(registerNewUser.getUsername()));
-        String userEmail = String.valueOf(userService.findUserByEmail(registerNewUser.getEmail()));
+        String userPresent = String.valueOf(userService.findUserByUsername(userName));
+        String userEmail = String.valueOf(userService.findUserByEmail(email));
 
         if (!(userPresent.equalsIgnoreCase("null"))) {
             String message = "Try any other Username, this Username has already been taken.";
@@ -62,19 +69,19 @@ public class UserController {
             return new ResponseEntity < > (message, HttpStatus.FORBIDDEN);
         } else {
             userService.registerUserDetails(user, userProfile);
-            String message = registerNewUser.getUsername() + " successfully registered";
+            String message = userName + " successfully registered";
             return new ResponseEntity <> (message, HttpStatus.OK);
         }
 
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> signin(LoginUser loginUser, HttpSession session)throws Exception
+    public ResponseEntity<String> signin(@RequestParam("userName") String userName, @RequestParam("password") String password, HttpSession session)throws Exception
     {
         String message = null;
-        String inputUserName = loginUser.getUsername();
-        String inputPasswordHash = hashPassword(loginUser.getPassword());
-        String userPasswordHash =  String.valueOf(userService.findUserPassword(loginUser.getUsername()));
+        String inputUserName = userName;
+        String inputPasswordHash = hashPassword(password);
+        String userPasswordHash =  String.valueOf(userService.findUserPassword(inputUserName));
         if (!(userPasswordHash.equalsIgnoreCase(inputPasswordHash))) {
             message = "Invalid Credentials";
             return new ResponseEntity <> (message, HttpStatus.UNAUTHORIZED);

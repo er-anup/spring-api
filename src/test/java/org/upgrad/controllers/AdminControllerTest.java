@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.upgrad.models.User;
 import org.upgrad.services.CategoryService;
+import org.upgrad.services.NotificationService;
 import org.upgrad.services.UserProfileService;
 import org.upgrad.services.UserService;
 
@@ -46,6 +47,9 @@ public class AdminControllerTest {
 
     @MockBean
     private UserProfileService userProfileService;
+
+    @MockBean
+    private NotificationService notificationService;
 
     @Test
     public void createCategoryWithNoAuthentication() throws Exception{

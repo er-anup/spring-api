@@ -11,22 +11,22 @@ import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/question")
+@RequestMapping("/api/question/")
 public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
 
-    @PostMapping("/question")
-    public ResponseEntity<?> createQuestion(@RequestParam("categoryId") Set<Integer> categoryId, @RequestParam("question") String question, HttpSession session) {
+    @PostMapping("/")
+    public ResponseEntity<?> addQuestion(@RequestParam("categoryId") Set<Integer> categoryId, @RequestParam("question") String question, HttpSession session) {
 
         if (session.getAttribute("currUser")==null) {
-            return new ResponseEntity<>("Please Login",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Please Login first to access this endpoint!",HttpStatus.UNAUTHORIZED);
         }
         else {
             User user = (User) session.getAttribute("currUser");
             questionService.addQuestion(question, user.getId(),categoryId);
-            return new ResponseEntity<>("Question is added.", HttpStatus.OK);
+            return new ResponseEntity<>("Question added successfully.", HttpStatus.OK);
         }
     }
 
@@ -34,7 +34,7 @@ public class QuestionController {
     public ResponseEntity<?> getAllQuestionsByCategory(@PathVariable("categoryId") int categoryId, HttpSession session) {
 
         if (session.getAttribute("currUser")==null) {
-            return new ResponseEntity<>("Please Login",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Please Login first to access this endpoint!",HttpStatus.UNAUTHORIZED);
         }
 
         else {
@@ -46,8 +46,8 @@ public class QuestionController {
     @GetMapping("/all")
     public ResponseEntity<?> getAllQuestionsByUser(HttpSession session) {
 
-        if (session.getAttribute("currUser")==null) {
-            return new ResponseEntity<>("Please Login",HttpStatus.UNAUTHORIZED);
+        if (session.getAttribute("currUser")== null) {
+            return new ResponseEntity<>("Please Login first to access this endpoint!",HttpStatus.UNAUTHORIZED);
         }
 
         else {
@@ -61,7 +61,7 @@ public class QuestionController {
     public ResponseEntity<?> deleteQuestion(@PathVariable("questionId") int questionId,HttpSession session) {
 
         if (session.getAttribute("currUser")==null) {
-            return new ResponseEntity<>("Please Login",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Please Login first to access this endpoint!",HttpStatus.UNAUTHORIZED);
         }
 
         else {
@@ -69,10 +69,10 @@ public class QuestionController {
             int userId = questionService.findUserIdFromQuestion(questionId);
             if(userId == user.getId() || user.getRole().equalsIgnoreCase("admin")) {
                 questionService.deleteQuestion(questionId);
-                return new ResponseEntity<>("Question and it'sId " + questionId + " deleted.", HttpStatus.OK);
+                return new ResponseEntity<>("Question with questionId " + questionId + " deleted successfully.", HttpStatus.OK);
             }
             else {
-                return new ResponseEntity<>("You can't delete this question!", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>("You do not have rights to delete this question!", HttpStatus.FORBIDDEN);
             }
         }
     }

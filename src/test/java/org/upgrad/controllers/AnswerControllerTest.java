@@ -39,6 +39,9 @@ public class AnswerControllerTest {
     private AnswerService answerService;
 
     @MockBean
+    private LikeService likeService;
+
+    @MockBean
     private QuestionService questionService;
 
     @MockBean
@@ -50,7 +53,7 @@ public class AnswerControllerTest {
         session.setAttribute("currUser", null);
         String questionId = "3";
         String answer = "This is the answer";
-        String url = "/api/answer";
+        String url = "/api/answer/";
         mvc.perform(post(url).session(session)
                 .param("questionId", questionId).param("answer", answer))
                 .andExpect(status().is4xxClientError())
@@ -65,7 +68,7 @@ public class AnswerControllerTest {
         session.setAttribute("currUser",user);
         String answer = "This is the answer";
         String questionId = "3";
-        String url = "/api/answer";
+        String url = "/api/answer/";
         mvc.perform(post(url).session(session)
                 .param("questionId",questionId).param("answer",answer))
                 .andExpect(status().is2xxSuccessful())

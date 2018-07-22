@@ -58,7 +58,7 @@ public class CommentControllerTest {
         session.setAttribute("currUser", null);
         String comment = "good";
         String answerId ="1";
-        String url = "/api/comment";
+        String url = "/api/comment/";
         mvc.perform(post(url).session(session)
                 .param("comment",comment)
                 .param("answerId",answerId))
@@ -75,7 +75,7 @@ public class CommentControllerTest {
         session.setAttribute("currUser", user);
         String comment = "good";
         String answerId ="1";
-        String url = "/api/comment";
+        String url = "/api/comment/";
         mvc.perform(post(url).session(session)
                 .param("comment",comment)
                 .param("answerId",answerId))
