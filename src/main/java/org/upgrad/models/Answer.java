@@ -23,7 +23,7 @@ public class Answer {
     @Column(name = "question_id")
     private int question_id;
 
-    @Column(name = "modifiedon")
+    @Column(name = "modifiedOn")
     private LocalDateTime modifiedOn ;
 
     @Transient
@@ -85,4 +85,5 @@ public class Answer {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

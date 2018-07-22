@@ -6,6 +6,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/*
+    Author - Mananpreet Singh
+    Date - 7 July, 2018
+    Description - Persistence Class for Question table
+ */
 @Entity
 @Table(name = "question")
 public class Question {
