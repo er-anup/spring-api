@@ -6,11 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.Date;
-/*
-    Author - kanishka
-    Date - 13 July, 2018
-    Description - Persistence Class for Comment table
-*/
+
 @Entity
 public class Comment {
 
